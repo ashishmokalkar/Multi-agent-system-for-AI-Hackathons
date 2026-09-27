@@ -1,0 +1,26 @@
+{
+  "name": "audio-competition-control-room",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "capture:highlight": "node scripts/capture-highlights.mjs"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@vitejs/plugin-react": "^5.0.0",
+    "typescript": "^5.7.3",
+    "vite": "^7.0.0",
+    "vitest": "^5.0.2"
+  }
+}

@@ -1,0 +1,41 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+.venv/
+venv/
+.env
+runs/
+*.log
+*.pt
+*.pth
+*.ckpt
+*.npz
+*.wav
+*.flac
+*.zip
+data/
+datasets/
+checkpoints/
+artifacts/
+
+# Control-room frontend build/cache
+frontend/node_modules/
+frontend/dist/
+frontend/test-results/
+frontend/playwright-report/
+screenshots/
+
+# Publish only the finalized social highlight
+!artifacts/
+artifacts/*
+!artifacts/social_highlight_v3/
+artifacts/social_highlight_v3/capture-temp/
+!artifacts/social_highlight_v3/*.mp4
+!artifacts/social_highlight_v3/*.png
+!artifacts/social_highlight_v3/representative_frames/
+!artifacts/social_highlight_v3/representative_frames/*.png
+
+# Locally preserved prior storyboard versions
+docs/HIGHLIGHT_REEL_V1.md
+docs/HIGHLIGHT_REEL_V2.md

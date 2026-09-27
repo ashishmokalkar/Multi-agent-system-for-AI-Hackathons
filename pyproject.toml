@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "audio-competition-agents"
+version = "0.1.0"
+description = "Guarded multi-agent orchestration for an audio event-detection competition"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {file = "LICENSE"}
+authors = [{name = "Vaani competition project contributors"}]
+dependencies = []
+
+[project.optional-dependencies]
+openai = ["openai-agents>=0.4"]
+dev = ["pytest>=8", "pytest-cov>=5"]
+
+[project.scripts]
+audio-agents = "audio_competition_agents.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/audio_competition_agents"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"src/audio_competition_agents/agents/prompts" = "audio_competition_agents/agents/prompts"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

@@ -1,0 +1,4 @@
+{"clip_id":"toy_train_01","source_group":"speaker_a/session_1","audio_sha256":"toyhash01","split":"train","duration":2.0,"events":[{"category":"human_non_speech","onset":0.40,"offset":0.70}]}
+{"clip_id":"toy_train_02","source_group":"speaker_b/session_1","audio_sha256":"toyhash02","split":"train","duration":2.5,"events":[{"category":"animal","onset":1.00,"offset":1.30}]}
+{"clip_id":"toy_val_01","source_group":"speaker_c/session_2","audio_sha256":"toyhash03","split":"validation","duration":2.0,"events":[{"category":"vehicle_traffic","onset":0.20,"offset":0.55}]}
+{"clip_id":"toy_val_02","source_group":"speaker_d/session_2","audio_sha256":"toyhash04","split":"validation","duration":1.5,"events":[]}

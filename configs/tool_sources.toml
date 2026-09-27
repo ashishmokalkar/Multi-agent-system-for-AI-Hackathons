@@ -1,0 +1,15 @@
+[legacy_tools.official_score]
+module = "e1_beats.official_scorer"
+function = "official_metrics"
+source = "e1_beats/official_scorer.py"
+
+[legacy_tools.split_integrity]
+module = "e1_beats.data"
+function = "assert_split_integrity"
+source = "e1_beats/data.py"
+
+[legacy_tools.synthetic_preflight]
+module = "generator"
+function = "assert_generation_ready"
+extra_import_root = "artifacts/vaani_synthetic_generator_v1/src"
+source = "artifacts/vaani_synthetic_generator_v1/src/generator.py"

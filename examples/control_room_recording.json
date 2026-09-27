@@ -1,0 +1,611 @@
+{
+  "capture_kind": "actual persisted mock-agent workflow; not a real-LLM trace",
+  "captured_at": "2026-09-27T13:22:12.390088+00:00",
+  "events": [
+    {
+      "agent": "coordinator",
+      "created_at": "2026-09-27T13:22:11.570406+00:00",
+      "event_type": "task_assigned",
+      "payload": {
+        "mode": "mock",
+        "objective": "Inspect a generated audio fixture, propose a bounded annotation experiment, prepare a candidate, independently verify its known boundaries, revise once if needed, and score it."
+      },
+      "sequence": 1,
+      "summary": "Boundary-quality demo assigned"
+    },
+    {
+      "agent": "coordinator",
+      "created_at": "2026-09-27T13:22:11.581826+00:00",
+      "event_type": "agent_started",
+      "payload": {
+        "status": "running"
+      },
+      "sequence": 2,
+      "summary": "Delegating the bounded audio experiment"
+    },
+    {
+      "agent": "coordinator",
+      "created_at": "2026-09-27T13:22:11.613801+00:00",
+      "event_type": "agent_completed",
+      "payload": {
+        "output": {
+          "decision": "delegate",
+          "delegated_tasks": {
+            "data_investigator": "Analyze the objective within the data_investigator contract.",
+            "research_modeling_agent": "Analyze the objective within the research_modeling_agent contract.",
+            "synthetic_data_engineer": "Analyze the objective within the synthetic_data_engineer contract."
+          },
+          "phase": "intake",
+          "selected_specialists": [
+            "data_investigator",
+            "research_modeling_agent",
+            "synthetic_data_engineer"
+          ],
+          "summary": "Objective decomposed into bounded specialist handoffs.",
+          "unresolved": []
+        },
+        "status": "completed"
+      },
+      "sequence": 3,
+      "summary": "Delegating the bounded audio experiment"
+    },
+    {
+      "agent": "synthetic_data_engineer",
+      "created_at": "2026-09-27T13:22:11.624664+00:00",
+      "event_type": "tool_started",
+      "payload": {
+        "progress": "indeterminate"
+      },
+      "sequence": 4,
+      "summary": "Generating redistributable fixture"
+    },
+    {
+      "agent": "synthetic_data_engineer",
+      "created_at": "2026-09-27T13:22:11.737267+00:00",
+      "event_type": "tool_completed",
+      "payload": {
+        "result": {
+          "duration_seconds": 4.0,
+          "sample_rate": 16000
+        }
+      },
+      "sequence": 5,
+      "summary": "Generated 4-second fixture with explicit known boundaries"
+    },
+    {
+      "agent": "synthetic_data_engineer",
+      "created_at": "2026-09-27T13:22:11.765060+00:00",
+      "event_type": "artifact_created",
+      "payload": {
+        "artifact_id": "fixture_audio",
+        "caption": "A generated chirp is audible from 0.750 s to 1.250 s over a quiet tonal background.",
+        "fixture": {
+          "duration_seconds": 4.0,
+          "known_reference": [
+            0.75,
+            1.25
+          ],
+          "original_annotation": [
+            0.7,
+            1.55
+          ]
+        }
+      },
+      "sequence": 6,
+      "summary": "Audio fixture and reference annotation available"
+    },
+    {
+      "agent": "data_investigator",
+      "created_at": "2026-09-27T13:22:11.776062+00:00",
+      "event_type": "agent_started",
+      "payload": {
+        "status": "running"
+      },
+      "sequence": 7,
+      "summary": "Inspecting fixture manifest and source isolation"
+    },
+    {
+      "agent": "data_investigator",
+      "created_at": "2026-09-27T13:22:11.809449+00:00",
+      "event_type": "agent_completed",
+      "payload": {
+        "output": {
+          "category_counts": {
+            "generated_test_event": 1
+          },
+          "duplicate_hash_intersections": {
+            "all_splits": 0
+          },
+          "duration_hours": 0.0022222222222222222,
+          "evidence": [
+            {
+              "description": "",
+              "kind": "jsonl",
+              "name": "manifest",
+              "uri": "control-room://generated-artifact"
+            }
+          ],
+          "findings": [
+            "Source isolation passed.",
+            "Evaluation clip leaks: 0."
+          ],
+          "item_count": 2,
+          "passed": true,
+          "source_group_intersections": {
+            "all_splits": 0
+          },
+          "split_counts": {
+            "train": 1,
+            "validation": 1
+          }
+        },
+        "status": "completed"
+      },
+      "sequence": 8,
+      "summary": "Inspecting fixture manifest and source isolation"
+    },
+    {
+      "agent": "research_modeling_agent",
+      "created_at": "2026-09-27T13:22:11.821475+00:00",
+      "event_type": "agent_started",
+      "payload": {
+        "status": "running"
+      },
+      "sequence": 9,
+      "summary": "Drafting one bounded annotation-quality comparison"
+    },
+    {
+      "agent": "research_modeling_agent",
+      "created_at": "2026-09-27T13:22:11.852450+00:00",
+      "event_type": "agent_completed",
+      "payload": {
+        "output": {
+          "comparison": "paired candidate minus incumbent on one fixed held-out population",
+          "data_configuration": {
+            "manifest": "control-room://generated-artifact",
+            "source_disjoint_required": true
+          },
+          "estimated_gpu_hours": 0.0,
+          "evidence_claims": [
+            "The proposal is a matched comparison; improvement remains a hypothesis."
+          ],
+          "gate": {
+            "maximum_dice_regression": 0.005,
+            "minimum_combined_delta": 0.01
+          },
+          "hypothesis": "Boundary supervision may improve Event F1 without materially reducing Segment Dice.",
+          "model_configuration": {
+            "all_other_factors_locked": true,
+            "changed_factor": "proposal-only diagnostic in mock mode",
+            "incumbent": "existing frozen-encoder A1"
+          },
+          "primary_metric": "Event F1 + Segment Dice",
+          "proposal_id": "mock-proposal-r0",
+          "requires_training": false,
+          "revision": 0,
+          "title": "Matched boundary-supervision check"
+        },
+        "status": "completed"
+      },
+      "sequence": 10,
+      "summary": "Drafting one bounded annotation-quality comparison"
+    },
+    {
+      "agent": "synthetic_data_engineer",
+      "created_at": "2026-09-27T13:22:11.878455+00:00",
+      "event_type": "tool_started",
+      "payload": {
+        "progress": "indeterminate"
+      },
+      "sequence": 11,
+      "summary": "Preparing initial candidate annotation"
+    },
+    {
+      "agent": "synthetic_data_engineer",
+      "created_at": "2026-09-27T13:22:11.889680+00:00",
+      "event_type": "agent_started",
+      "payload": {
+        "status": "running"
+      },
+      "sequence": 12,
+      "summary": "Preparing the initial candidate artifact"
+    },
+    {
+      "agent": "synthetic_data_engineer",
+      "created_at": "2026-09-27T13:22:12.028075+00:00",
+      "event_type": "agent_completed",
+      "payload": {
+        "output": {
+          "evidence": [
+            {
+              "description": "A generated chirp is audible from 0.750 s to 1.250 s over a quiet tonal background.",
+              "kind": "wav",
+              "name": "fixture_audio",
+              "uri": "control-room://generated-artifact"
+            }
+          ],
+          "findings": [
+            "Generated the fixture and deliberately defective test annotation."
+          ],
+          "generator_policy": "deterministic_generated_fixture",
+          "passed": true,
+          "sample_accurate_boundaries": true,
+          "source_isolation_passed": true
+        },
+        "status": "completed"
+      },
+      "sequence": 13,
+      "summary": "Preparing the initial candidate artifact"
+    },
+    {
+      "agent": "synthetic_data_engineer",
+      "created_at": "2026-09-27T13:22:12.039991+00:00",
+      "event_type": "tool_completed",
+      "payload": {
+        "artifact_id": "initial_annotation"
+      },
+      "sequence": 14,
+      "summary": "Initial candidate preserves the deliberately defective test boundary"
+    },
+    {
+      "agent": "independent_evaluator",
+      "created_at": "2026-09-27T13:22:12.051157+00:00",
+      "event_type": "tool_started",
+      "payload": {
+        "progress": "indeterminate"
+      },
+      "sequence": 15,
+      "summary": "Checking candidate against explicit fixture boundaries"
+    },
+    {
+      "agent": "independent_evaluator",
+      "created_at": "2026-09-27T13:22:12.061962+00:00",
+      "event_type": "agent_started",
+      "payload": {
+        "status": "running"
+      },
+      "sequence": 16,
+      "summary": "Independently checking the candidate boundary"
+    },
+    {
+      "agent": "independent_evaluator",
+      "created_at": "2026-09-27T13:22:12.096612+00:00",
+      "event_type": "agent_completed",
+      "payload": {
+        "output": {
+          "checks": {
+            "deterministic_check": true,
+            "known_boundary_match": false
+          },
+          "decision": "revise",
+          "findings": [
+            "event 1 onset differs by -0.050 s (allowed \u00b10.005 s)",
+            "event 1 offset differs by +0.300 s (allowed \u00b10.005 s)"
+          ],
+          "matched_comparison": true,
+          "metrics": null,
+          "required_revisions": [
+            "Correct only the reported fixture boundary fields."
+          ]
+        },
+        "status": "completed"
+      },
+      "sequence": 17,
+      "summary": "Independently checking the candidate boundary"
+    },
+    {
+      "agent": "independent_evaluator",
+      "created_at": "2026-09-27T13:22:12.108747+00:00",
+      "event_type": "tool_completed",
+      "payload": {
+        "result": {
+          "candidate_event_count": 1,
+          "changes": [
+            {
+              "delta_seconds": -0.050000000000000044,
+              "event_id": "fixture_event_01",
+              "expected": 0.75,
+              "field": "onset",
+              "observed": 0.7
+            },
+            {
+              "delta_seconds": 0.30000000000000004,
+              "event_id": "fixture_event_01",
+              "expected": 1.25,
+              "field": "offset",
+              "observed": 1.55
+            }
+          ],
+          "check": "deterministic known-boundary comparison; not semantic listening verification",
+          "errors": [
+            "event 1 onset differs by -0.050 s (allowed \u00b10.005 s)",
+            "event 1 offset differs by +0.300 s (allowed \u00b10.005 s)"
+          ],
+          "passed": false,
+          "reference_event_count": 1,
+          "tolerance_seconds": 0.005
+        }
+      },
+      "sequence": 18,
+      "summary": "Boundary check returned measured deltas"
+    },
+    {
+      "agent": "independent_evaluator",
+      "created_at": "2026-09-27T13:22:12.122972+00:00",
+      "event_type": "review_rejected",
+      "payload": {
+        "artifact_id": "initial_annotation",
+        "changes": [
+          {
+            "delta_seconds": -0.050000000000000044,
+            "event_id": "fixture_event_01",
+            "expected": 0.75,
+            "field": "onset",
+            "observed": 0.7
+          },
+          {
+            "delta_seconds": 0.30000000000000004,
+            "event_id": "fixture_event_01",
+            "expected": 1.25,
+            "field": "offset",
+            "observed": 1.55
+          }
+        ],
+        "findings": [
+          "event 1 onset differs by -0.050 s (allowed \u00b10.005 s)",
+          "event 1 offset differs by +0.300 s (allowed \u00b10.005 s)"
+        ]
+      },
+      "sequence": 19,
+      "summary": "Evaluator rejected the initial annotation"
+    },
+    {
+      "agent": "synthetic_data_engineer",
+      "created_at": "2026-09-27T13:22:12.133355+00:00",
+      "event_type": "revision_requested",
+      "payload": {
+        "attempt": 1,
+        "limit": 1,
+        "target": "synthetic_data_engineer"
+      },
+      "sequence": 20,
+      "summary": "One bounded boundary correction requested"
+    },
+    {
+      "agent": "synthetic_data_engineer",
+      "created_at": "2026-09-27T13:22:12.143492+00:00",
+      "event_type": "tool_started",
+      "payload": {
+        "progress": "indeterminate"
+      },
+      "sequence": 21,
+      "summary": "Applying fixture-only boundary correction"
+    },
+    {
+      "agent": "synthetic_data_engineer",
+      "created_at": "2026-09-27T13:22:12.153708+00:00",
+      "event_type": "agent_started",
+      "payload": {
+        "status": "running"
+      },
+      "sequence": 22,
+      "summary": "Revising the rejected candidate artifact"
+    },
+    {
+      "agent": "synthetic_data_engineer",
+      "created_at": "2026-09-27T13:22:12.190153+00:00",
+      "event_type": "agent_completed",
+      "payload": {
+        "output": {
+          "evidence": [
+            {
+              "description": "Known-reference-guided correction for the explicitly labeled test fixture.",
+              "kind": "json",
+              "name": "corrected_annotation",
+              "uri": "control-room://generated-artifact"
+            }
+          ],
+          "findings": [
+            "Revised only the rejected fixture onset and offset."
+          ],
+          "generator_policy": "bounded_fixture_reference_revision",
+          "passed": true,
+          "sample_accurate_boundaries": true,
+          "source_isolation_passed": true
+        },
+        "status": "completed"
+      },
+      "sequence": 23,
+      "summary": "Revising the rejected candidate artifact"
+    },
+    {
+      "agent": "synthetic_data_engineer",
+      "created_at": "2026-09-27T13:22:12.212600+00:00",
+      "event_type": "artifact_created",
+      "payload": {
+        "artifact_id": "corrected_annotation",
+        "changed_fields": [
+          "onset",
+          "offset"
+        ],
+        "proposed_correction": [
+          0.75,
+          1.25
+        ]
+      },
+      "sequence": 24,
+      "summary": "Corrected annotation saved as revision 1"
+    },
+    {
+      "agent": "synthetic_data_engineer",
+      "created_at": "2026-09-27T13:22:12.224369+00:00",
+      "event_type": "tool_completed",
+      "payload": {
+        "revision": 1
+      },
+      "sequence": 25,
+      "summary": "Bounded correction completed"
+    },
+    {
+      "agent": "independent_evaluator",
+      "created_at": "2026-09-27T13:22:12.238650+00:00",
+      "event_type": "tool_started",
+      "payload": {
+        "progress": "indeterminate"
+      },
+      "sequence": 26,
+      "summary": "Rerunning the deterministic boundary check"
+    },
+    {
+      "agent": "independent_evaluator",
+      "created_at": "2026-09-27T13:22:12.246503+00:00",
+      "event_type": "agent_started",
+      "payload": {
+        "status": "running"
+      },
+      "sequence": 27,
+      "summary": "Rechecking corrected boundaries"
+    },
+    {
+      "agent": "independent_evaluator",
+      "created_at": "2026-09-27T13:22:12.272734+00:00",
+      "event_type": "agent_completed",
+      "payload": {
+        "output": {
+          "checks": {
+            "deterministic_check": true,
+            "known_boundary_match": true
+          },
+          "decision": "approve",
+          "findings": [
+            "Candidate matches the explicit known fixture boundaries."
+          ],
+          "matched_comparison": true,
+          "metrics": null,
+          "required_revisions": []
+        },
+        "status": "completed"
+      },
+      "sequence": 28,
+      "summary": "Rechecking corrected boundaries"
+    },
+    {
+      "agent": "independent_evaluator",
+      "created_at": "2026-09-27T13:22:12.285629+00:00",
+      "event_type": "tool_completed",
+      "payload": {
+        "result": {
+          "candidate_event_count": 1,
+          "changes": [],
+          "check": "deterministic known-boundary comparison; not semantic listening verification",
+          "errors": [],
+          "passed": true,
+          "reference_event_count": 1,
+          "tolerance_seconds": 0.005
+        }
+      },
+      "sequence": 29,
+      "summary": "Corrected candidate passed the known-boundary check"
+    },
+    {
+      "agent": "independent_evaluator",
+      "created_at": "2026-09-27T13:22:12.295498+00:00",
+      "event_type": "review_accepted",
+      "payload": {
+        "findings": [
+          "Candidate matches the explicit known fixture boundaries."
+        ],
+        "revision": 1
+      },
+      "sequence": 30,
+      "summary": "Evaluator accepted revision 1"
+    },
+    {
+      "agent": "independent_evaluator",
+      "created_at": "2026-09-27T13:22:12.305191+00:00",
+      "event_type": "job_progress",
+      "payload": {
+        "job": "validation_and_scoring",
+        "progress": "indeterminate"
+      },
+      "sequence": 31,
+      "summary": "CPU scoring is running"
+    },
+    {
+      "agent": "independent_evaluator",
+      "created_at": "2026-09-27T13:22:12.327570+00:00",
+      "event_type": "metrics_recorded",
+      "payload": {
+        "baseline": {
+          "combined": 0.7407407407407407,
+          "event_f1": 0.0,
+          "event_precision": 0.0,
+          "event_recall": 0.0,
+          "fn": 1,
+          "fp": 1,
+          "population": "bundled toy data",
+          "scorer": "toy deterministic scorer; not the official evaluator",
+          "segment_dice": 0.7407407407407407,
+          "tp": 0
+        },
+        "candidate": {
+          "combined": 2.0,
+          "event_f1": 1.0,
+          "event_precision": 1.0,
+          "event_recall": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "population": "bundled toy data",
+          "scorer": "toy deterministic scorer; not the official evaluator",
+          "segment_dice": 1.0,
+          "tp": 1
+        },
+        "label": "Generated fixture only \u2014 toy scorer, not competition metrics"
+      },
+      "sequence": 32,
+      "summary": "Measured fixture scores recorded"
+    },
+    {
+      "agent": "coordinator",
+      "created_at": "2026-09-27T13:22:12.344069+00:00",
+      "event_type": "agent_started",
+      "payload": {
+        "status": "running"
+      },
+      "sequence": 33,
+      "summary": "Summarizing the observed fixture outcome"
+    },
+    {
+      "agent": "coordinator",
+      "created_at": "2026-09-27T13:22:12.370445+00:00",
+      "event_type": "agent_completed",
+      "payload": {
+        "output": {
+          "decision": "complete",
+          "delegated_tasks": {},
+          "phase": "final",
+          "selected_specialists": [],
+          "summary": "Workflow complete after independent review. Toy Combined=2.0000.",
+          "unresolved": []
+        },
+        "status": "completed"
+      },
+      "sequence": 34,
+      "summary": "Summarizing the observed fixture outcome"
+    },
+    {
+      "agent": "coordinator",
+      "created_at": "2026-09-27T13:22:12.380610+00:00",
+      "event_type": "run_completed",
+      "payload": {
+        "status": "complete",
+        "summary": "Workflow complete after independent review. Toy Combined=2.0000."
+      },
+      "sequence": 35,
+      "summary": "Demo completed with one measured rejection and correction"
+    }
+  ],
+  "run_id": "20260927T132211Z-2d8a3a5c",
+  "schema_version": 1,
+  "source_mode": "mock"
+}

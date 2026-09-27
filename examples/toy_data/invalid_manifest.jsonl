@@ -1,0 +1,2 @@
+{"clip_id":"toy_train_01","source_group":"speaker_a/session_1","audio_sha256":"toyhash01","split":"train","duration":2.0,"events":[{"category":"human_non_speech","onset":0.40,"offset":0.70}]}
+{"clip_id":"toy_val_01","source_group":"speaker_a/session_1","audio_sha256":"toyhash03","split":"validation","duration":2.0,"events":[{"category":"vehicle_traffic","onset":0.20,"offset":0.55}]}

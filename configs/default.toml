@@ -1,0 +1,24 @@
+[runtime]
+mode = "mock"
+max_revision_attempts = 2
+default_timeout_seconds = 1800
+max_parallel_specialists = 3
+gpu_slots = 1
+
+[provider]
+name = "openai"
+model_env = "OPENAI_MODEL"
+default_model = "gpt-5"
+api_key_env = "OPENAI_API_KEY"
+
+[paths]
+original_repo_env = "AUDIO_AGENTS_ORIGINAL_REPO"
+run_root_env = "AUDIO_AGENTS_RUN_ROOT"
+default_run_root = "runs"
+
+[safety]
+default_dry_run = true
+require_training_authorization = true
+allow_submission = false
+allow_publish = false
+allow_git_push = false

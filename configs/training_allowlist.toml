@@ -1,0 +1,26 @@
+# Exact, repository-relative entry points. The launcher never accepts a shell
+# command from an agent. Limits are upper bounds, not defaults.
+
+[jobs.beats_a1_synthetic_40h_local]
+script = "artifacts/beats_a1_approved_synthetic_40h_v1/train_local.py"
+allowed_devices = ["cuda", "cpu"]
+max_epochs = 8
+max_wall_seconds = 86400
+gpu_count = 1
+fixed_args = []
+
+[jobs.beats_a1_synthetic_40h_fullgold]
+script = "artifacts/beats_a1_approved_synthetic_40h_v1/train_fullgold.py"
+allowed_devices = ["cuda"]
+max_epochs = 8
+max_wall_seconds = 86400
+gpu_count = 1
+fixed_args = []
+
+[jobs.beats_a1_synthetic_40h_evaluate]
+script = "artifacts/beats_a1_approved_synthetic_40h_v1/evaluate_local.py"
+allowed_devices = ["cuda", "cpu"]
+max_epochs = 0
+max_wall_seconds = 21600
+gpu_count = 1
+fixed_args = []
